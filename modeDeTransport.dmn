@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Mode_de_transport" name="Mode de Transport" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.29.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <description>Urgence : Oui /  Non</description>
+  <decision id="mode-de-transport" name="Mode de Transport">
+    <description>Table de decison pour determiner le mode de transport.</description>
+    <question>Quel est le mode de transport en fonction  de la dangerosite, du poinds et de l'urgence ?</question>
+    <allowedAnswers>Mode de Transport : Traction Directe / Transport Aérien / Transport Maritime</allowedAnswers>
+    <informationRequirement id="InformationRequirement_0nua8d4">
+      <requiredInput href="#dangerosite" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0o1nxdw">
+      <requiredInput href="#poids" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0fd2meo">
+      <requiredInput href="#urgence" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1m3gr4d" hitPolicy="FIRST" biodi:annotationsWidth="400">
+      <input id="Input_1" biodi:width="150">
+        <inputExpression id="InputExpression_1" typeRef="boolean">
+          <text>dangerosite</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0d8e6vg" biodi:width="150">
+        <inputExpression id="LiteralExpression_0db8lrq" typeRef="number">
+          <text>poids</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1e0jhdn" biodi:width="150">
+        <inputExpression id="LiteralExpression_03fjax9" typeRef="boolean">
+          <text>urgence</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="libelleModeTransport" typeRef="string" biodi:width="213" />
+      <output id="OutputClause_012v2m2" name="codeModeTransport" typeRef="string" biodi:width="166" />
+      <rule id="DecisionRule_0u93dea">
+        <inputEntry id="UnaryTests_1bddoih">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ya8q6s">
+          <text>&gt;100</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yaoori">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0997wgd">
+          <text>"Traction Directe"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1e4qudc">
+          <text>"TD"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xrdoly">
+        <inputEntry id="UnaryTests_0h0xmqp">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0t8bipz">
+          <text>&gt;1000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06j9ppw">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_06me1cn">
+          <text>"Transport Maritime"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1atdcpg">
+          <text>"TM"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_113a9jh">
+        <inputEntry id="UnaryTests_0ccsl1k">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1h9oeoa">
+          <text>&lt;1000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1v8hi0g">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0b01u3a">
+          <text>"Transport Aérien"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1cl3dbe">
+          <text>"TA"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19m8zzn">
+        <inputEntry id="UnaryTests_17qsi9j">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rtgeeg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bsus0n">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ibebt4">
+          <text>"Transport Ferroviaire"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1sgkhh6">
+          <text>"TA"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="dangerosite" name="Dangerosité">
+    <description>Dangerosite :Oui/Non</description>
+  </inputData>
+  <inputData id="poids" name="Poids">
+    <description>Poids, chiffre en  kg</description>
+  </inputData>
+  <inputData id="urgence" name="Urgence" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="mode-de-transport">
+        <dc:Bounds height="80" width="180" x="270" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0qbxiui" dmnElementRef="dangerosite">
+        <dc:Bounds height="45" width="125" x="157" y="287" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_037xafz" dmnElementRef="poids">
+        <dc:Bounds height="45" width="125" x="297" y="287" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1c498wo" dmnElementRef="urgence">
+        <dc:Bounds height="45" width="125" x="437" y="287" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1h0ob82" dmnElementRef="InformationRequirement_0nua8d4">
+        <di:waypoint x="220" y="287" />
+        <di:waypoint x="315" y="180" />
+        <di:waypoint x="315" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1u0w21m" dmnElementRef="InformationRequirement_0o1nxdw">
+        <di:waypoint x="360" y="287" />
+        <di:waypoint x="360" y="180" />
+        <di:waypoint x="360" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0sjjouj" dmnElementRef="InformationRequirement_0fd2meo">
+        <di:waypoint x="500" y="287" />
+        <di:waypoint x="405" y="180" />
+        <di:waypoint x="405" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

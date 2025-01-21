@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_08qjxua" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.29.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <bpmn:process id="Process_mode_de_transport" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Événement de démarrage">
+      <bpmn:outgoing>Flow_1abydih</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:businessRuleTask id="evaluer_decison" name="Evaluer la decision">
+      <bpmn:extensionElements>
+        <zeebe:calledDecision decisionId="mode-de-transport" resultVariable="modeTransport" />
+        <zeebe:ioMapping>
+          <zeebe:input target="dangerosite" />
+          <zeebe:input target="poids" />
+          <zeebe:input target="urgence" />
+          <zeebe:output source="=modeTransport.codeModeTransport" target="codeModeTransport" />
+          <zeebe:output source="=modeTransport.libelleModeTransport" target="libelleModeTransport" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1abydih</bpmn:incoming>
+      <bpmn:outgoing>Flow_0juhc8e</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:sequenceFlow id="Flow_1abydih" sourceRef="StartEvent_1" targetRef="evaluer_decison" />
+    <bpmn:endEvent id="Event_1ol2r56" name="Événement de fin">
+      <bpmn:incoming>Flow_0juhc8e</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0juhc8e" sourceRef="evaluer_decison" targetRef="Event_1ol2r56" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_mode_de_transport">
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="172" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="155" y="145" width="71" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1mrqmaj_di" bpmnElement="evaluer_decison">
+        <dc:Bounds x="320" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ol2r56_di" bpmnElement="Event_1ol2r56">
+        <dc:Bounds x="532" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="508" y="145" width="86" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1abydih_di" bpmnElement="Flow_1abydih">
+        <di:waypoint x="208" y="120" />
+        <di:waypoint x="320" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0juhc8e_di" bpmnElement="Flow_0juhc8e">
+        <di:waypoint x="420" y="120" />
+        <di:waypoint x="532" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
