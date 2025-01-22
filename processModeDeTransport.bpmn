@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_08qjxua" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.29.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_08qjxua" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="218a9c7" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
   <bpmn:process id="Process_mode_de_transport" isExecutable="true">
+    <bpmn:documentation>YES</bpmn:documentation>
     <bpmn:startEvent id="StartEvent_1" name="Événement de démarrage">
       <bpmn:outgoing>Flow_1abydih</bpmn:outgoing>
     </bpmn:startEvent>
@@ -8,9 +9,6 @@
       <bpmn:extensionElements>
         <zeebe:calledDecision decisionId="mode-de-transport" resultVariable="modeTransport" />
         <zeebe:ioMapping>
-          <zeebe:input target="dangerosite" />
-          <zeebe:input target="poids" />
-          <zeebe:input target="urgence" />
           <zeebe:output source="=modeTransport.codeModeTransport" target="codeModeTransport" />
           <zeebe:output source="=modeTransport.libelleModeTransport" target="libelleModeTransport" />
         </zeebe:ioMapping>
