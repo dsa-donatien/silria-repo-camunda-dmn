@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Mode_de_transport" name="Mode de Transport" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.29.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
   <description>Urgence : Oui /  Non</description>
-  <decision id="mode-de-transport" name="Mode de Transport xxxxx">
+  <decision id="mode-de-transport" name="Mode de Transport">
     <description>Table de decison pour determiner le mode de transport.</description>
     <question>Quel est le mode de transport en fonction  de la dangerosite, du poinds et de l'urgence ?</question>
     <allowedAnswers>Mode de Transport : Traction Directe / Transport Aérien / Transport Maritime</allowedAnswers>
